@@ -11,10 +11,6 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Atul Shanbhag
  *
  */
-/**
- * @author Atul Shanbhag
- *
- */
 public abstract class ICoffeeMachine {
 	protected int nOutlets;
 	protected String description;
