@@ -277,10 +277,28 @@ public class CoffeeMachine extends ICoffeeMachine {
 	}
 
 	/**
+	 * Adds a new ingredient to the stock if not added before.
+	 * 
+	 * @param name
+	 * @param quantity
+	 * @throws IllegalArgumentException
+	 */
+	@Override
+	public void addIngredient(String name, int quantity) throws IllegalArgumentException {
+		if (ingredients.containsKey(name)) {
+			throw new IllegalArgumentException(
+					"This ingredient already exists! Cannot create a new one! Please add quantity instead!");
+		}
+		Ingredient ing = new Ingredient(name, quantity);
+		ingredients.put(name, ing);
+		System.out.println("Added " + ing + " to the machine!");
+	}
+
+	/**
 	 * Adds a quantity of the ingredient to the stock.
 	 */
 	@Override
-	public void addIngredient(Ingredient ingredient, int quantity)
+	public void addIngredientQuantity(Ingredient ingredient, int quantity)
 			throws IllegalArgumentException, InterruptedException {
 		if (ingredient == null) {
 			throw new IllegalArgumentException("Ingredient is not defined! Cannot add quantity to this ingredient!");
@@ -295,9 +313,28 @@ public class CoffeeMachine extends ICoffeeMachine {
 	 * @throws InterruptedException
 	 */
 	@Override
-	public void addIngredient(String ingredientName, int quantity) throws InterruptedException {
+	public void addIngredientQuantity(String ingredientName, int quantity) throws InterruptedException {
 		Ingredient ingredient = getIngredient(ingredientName);
-		addIngredient(ingredient, quantity);
+		addIngredientQuantity(ingredient, quantity);
+	}
+
+	/**
+	 * Adds a new beverage to the Coffee Machine if not supported before.
+	 * 
+	 * @param beverage
+	 * @throws IllegalArgumentException
+	 */
+	@Override
+	public void addBeverage(Beverage beverage) throws IllegalArgumentException {
+		if (beverage == null) {
+			throw new IllegalArgumentException("Beverage is not defined! Cannot add this beverage to the machine!");
+		}
+		String beverageName = beverage.getName();
+		if (beverages.containsKey(beverageName)) {
+			throw new IllegalArgumentException("This beverage already exists! Cannot add a new one!");
+		}
+		beverages.put(beverageName, beverage);
+		System.out.println("Added " + beverageName + " to the machine!");
 	}
 
 	/**

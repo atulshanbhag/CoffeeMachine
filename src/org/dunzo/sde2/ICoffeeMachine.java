@@ -11,6 +11,10 @@ import java.util.concurrent.locks.ReentrantLock;
  * @author Atul Shanbhag
  *
  */
+/**
+ * @author Atul Shanbhag
+ *
+ */
 public abstract class ICoffeeMachine {
 	protected int nOutlets;
 	protected String description;
@@ -101,6 +105,15 @@ public abstract class ICoffeeMachine {
 	public abstract void showDetails();
 
 	/**
+	 * Adds a new ingredient to the stock if not added before.
+	 * 
+	 * @param name
+	 * @param quantity
+	 * @throws IllegalArgumentException
+	 */
+	public abstract void addIngredient(String name, int quantity) throws IllegalArgumentException;
+
+	/**
 	 * Adds a quantity of the ingredient to the stock.
 	 * 
 	 * @param ingredient
@@ -108,7 +121,7 @@ public abstract class ICoffeeMachine {
 	 * @throws IllegalArgumentException
 	 * @throws InterruptedException
 	 */
-	public abstract void addIngredient(Ingredient ingredient, int quantity)
+	public abstract void addIngredientQuantity(Ingredient ingredient, int quantity)
 			throws IllegalArgumentException, InterruptedException;
 
 	/**
@@ -118,7 +131,15 @@ public abstract class ICoffeeMachine {
 	 * @param quantity
 	 * @throws InterruptedException
 	 */
-	public abstract void addIngredient(String ingredientName, int quantity) throws InterruptedException;
+	public abstract void addIngredientQuantity(String ingredientName, int quantity) throws InterruptedException;
+
+	/**
+	 * Adds a new beverage to the Coffee Machine if not supported before.
+	 * 
+	 * @param beverage
+	 * @throws IllegalArgumentException
+	 */
+	public abstract void addBeverage(Beverage beverage) throws IllegalArgumentException;
 
 	/**
 	 * Validate that all the ingredients required for the beverage are in stock and
